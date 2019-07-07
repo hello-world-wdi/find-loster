@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+<<<<<<< HEAD
+=======
+// import {Route ,Link } from 'react-router-dom'
+>>>>>>> 211400513914a618dbb98050a472946cc381c5de
 import './Lost.css';
 
 class Lost extends Component {
@@ -8,6 +12,8 @@ class Lost extends Component {
     render() {
       return (
         <div className="Lost">
+        <h2>Test help Link </h2>
+        <p>help buttom is go to Lost page</p>
         </div>
       );
     }
