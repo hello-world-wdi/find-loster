@@ -1,21 +1,7 @@
-import React, { Component } from "react";
-// import { Route ,Link} from 'react-router-dom'
-import Details from './Details';
-import Lost from './Lost';
-import NewLostInf from './NewLostInf';
-import Api from './api.js';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import React from 'react';
 import './App.css';
 import Lost from './Lost'
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <Lost />
-      </header>
-    </div>
-  );
-}
+
 
 class App extends Component{
   render(){
