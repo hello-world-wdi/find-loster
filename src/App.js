@@ -1,23 +1,15 @@
 import React from 'react';
 import './App.css';
-import Lost from './Lost'
-
-
-class App extends Component{
-  render(){
-    return (
-      <div className="App">
-      <h1>Find Losters App</h1>
-            
-      <button><Link to="/lost">Help</Link></button>
-      <button><Link to="/newLostInf">New Lost</Link></button>
-      <Route exact path="/lost" component={Lost} />
-      <Route exact path="/newLostInf" component={NewLostInf} />
-      
-      <Api/>
-      </div>
-    );
-  }}
-
+import Lost from './Lost';
+import { Route } from 'react-router-dom';
+import Details from './Details'
+function App() {
+  return (
+    <div className="App">
+      <Route exact path='/' component={Lost} />
+      <Route path='/details/:id' component={Details} />
+    </div>
+  );
+}
 
 export default App;
