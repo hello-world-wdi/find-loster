@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import {Route ,Link } from 'react-router-dom'
 import './Lost.css';
 
 class Lost extends Component {
