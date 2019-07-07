@@ -6,7 +6,6 @@ import NewLostInf from './NewLostInf';
 import Api from './api.js';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './App.css';
-<<<<<<< HEAD
 import Lost from './Lost'
 function App() {
   return (
@@ -17,7 +16,6 @@ function App() {
     </div>
   );
 }
-=======
 
 class App extends Component{
   render(){
@@ -35,6 +33,5 @@ class App extends Component{
     );
   }}
 
->>>>>>> 211400513914a618dbb98050a472946cc381c5de
 
 export default App;
