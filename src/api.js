@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 export const losses = () => {
   return axios({
     method: 'get',
