@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
-import './Details.css'
-import { losses } from './api';
+import React, {Component} from 'react';
+import './Details.css';
+import api from './api';
 class Details extends Component {
 
     state = {
@@ -8,7 +8,7 @@ class Details extends Component {
     }
     componentDidMount = () => {
         let copyLosses = this.state.losses.slice();
-        losses()
+        api.losses()
         .then(response => {
             copyLosses = response.data.records.map(({fields}) => fields)
             this.setState({
