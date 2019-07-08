@@ -1,27 +1,21 @@
-import React, { Component } from "react";
-// import { Route ,Link} from 'react-router-dom'
-import Details from './Details';
-import Lost from './Lost';
-import NewLostInf from './NewLostInf';
-import Api from './api.js';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import React, {Component} from 'react';
 import './App.css';
-
-class App extends Component{
+import Lost from './Lost';
+import { Route } from 'react-router-dom';
+import Details from './Details';
+import MapContainer from './MapContainer'
+import Nav from './Nav';
+class App extends React.Component {
   render(){
     return (
       <div className="App">
-      <h1>Find Losters App</h1>
-            
-      <button><Link to="/lost">Help</Link></button>
-      <button><Link to="/newLostInf">New Lost</Link></button>
-      <Route exact path="/lost" component={Lost} />
-      <Route exact path="/newLostInf" component={NewLostInf} />
-      
-      <Api/>
+        <Nav />
+        <Route ecact path='/' component={MapContainer} />
+        <Route exact path='/lost/' component={Lost} />
+        <Route exact path='/details/:id' component={Details} />
       </div>
     );
-  }}
-
+  }
+}
 
 export default App;

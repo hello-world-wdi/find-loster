@@ -1,26 +1,7 @@
-import React, {Component} from 'react';
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
-
-class api extends Component{
-  render(){
-    return (
-      <div className="api">
-        <header className="api-header">
-          <Map google={this.props.google} zoom={14}>
-            <Marker onClick={this.onMarkerClick}  name={'Current location'} />
-            <InfoWindow onClose={this.onInfoWindowClose}>
-                {/* <div>
-                  <h1>{this.state.selectedPlace.name}</h1>
-                </div> */}
-            </InfoWindow>
-          </Map>
-        </header>
-      </div>
-    );
-  }
+import axios from 'axios';
+export const losses = () => {
+  return axios({
+    method: 'get',
+    url: 'https://public.opendatasoft.com/api/records/1.0/search/?dataset=namus-missings&facet=cityoflastcontact&facet=countydisplaynameoflastcontact&facet=raceethnicity&facet=statedisplaynameoflastcontact&facet=gender'
+  })
 }
-
-// export default api;
-export default GoogleApiWrapper({
-  apiKey: ("AIzaSyDIAICVZcHIUeFjNMsHhoNoYcKHuYWdCuY")
-})(api)
