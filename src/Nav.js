@@ -5,7 +5,10 @@ class Nav extends Component{
     render(){
         return (
             <div>
+                <Link to="/">Home</Link>
+                <br/>
                 <Link to="/lost">Help</Link>
+                <br/>
                 <Link to="/newLostInf">New Lost</Link>
             </div>
         )
