@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
-
+import {Map, Marker, GoogleApiWrapper, Geocoder} from 'google-maps-react';
+import api from './api'
 class MapContainer extends Component{
   // To get latitude and longitude of current user location 
   state = { 
@@ -20,6 +20,19 @@ class MapContainer extends Component{
           userLocation: { lat: latitude, lng: longitude },
           loading: false
         });
+        
+        api.getCity()
+        .then(response => {
+          let cityIndex = response.data.plus_code.compound_code.indexOf(',') + 2;
+          let location = response.data.plus_code.compound_code.slice(cityIndex);
+          let spaceIndex = location.indexOf(' ');
+          location = location.slice(0, spaceIndex);
+          console.log(location);
+          const locationRef = api.firebase.database().ref('location');
+          locationRef.push({city: location});
+        })
+        
+        
       },
       () => {
         //Change the loading value 
@@ -35,12 +48,13 @@ class MapContainer extends Component{
     if (loading) {
       return null;
     }
+    
     return (
       <div className="App">
         <header className="App-header">
             <Map google={google} initialCenter={userLocation} zoom={14} >
-                { console.log(this.state.userLocation.lat) }
-                { console.log(this.state.userLocation.lng) }
+                {/* { console.log(this.state.userLocation.lat) }
+                { console.log(this.state.userLocation.lng) } */}
                 <Marker onClick={this.onMarkerClick}  name={'Current location'} />
             </Map>
         </header>
@@ -49,7 +63,7 @@ class MapContainer extends Component{
   }
 }
 
-// export default App;
+
 export default GoogleApiWrapper({
   apiKey: "AIzaSyDIAICVZcHIUeFjNMsHhoNoYcKHuYWdCuY"
 })(MapContainer)
