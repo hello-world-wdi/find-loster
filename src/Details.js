@@ -4,33 +4,54 @@ import api from './api';
 class Details extends Component {
 
     state = {
-        losses: []
+        losses: [],
+        city: 'jeddh'
+    }
+    componentWillMount = () => {
+        const locationRef = api.firebase.database().ref('location/city');
+        !this.state.city && (
+            locationRef.once('value').then(
+                snapshot => this.setState({
+                    city: snapshot.val()
+                }),
+                error => console.log(error)
+            )
+        )
     }
     componentDidMount = () => {
-        let copyLosses = this.state.losses.slice();
-        api.losses()
-        .then(response => {
-            copyLosses = response.data.records.map(({fields}) => fields)
-            this.setState({
-                losses: copyLosses
-            });
-        })
-        .catch(error => console.log(error))
-        
+        const locationRef = api.firebase.database().ref('losses');
+        const copyLosses = this.state.losses.slice();
+        locationRef.once('value').then(
+            snapshot => {
+                snapshot.forEach(snapshotChilde => {
+                    if(snapshotChilde.val().lose.city.toLowerCase() === this.state.city.toLowerCase())
+                        copyLosses.push({
+                            id: snapshotChilde.key,
+                            data: snapshotChilde.val()
+                        })
+                });
+                this.setState({
+                    losses: copyLosses
+                })
+            },
+            error => console.log(error)
+        )
     }
 
     render(){
-        const lost = this.state.losses.filter(lost => lost.image.id === this.props.match.params.id)
+        const lost = this.state.losses.filter(lost => lost.id === this.props.match.params.id)
         console.log(lost[0])
         return (
             <div className='Details'>
-               {lost.map(({firstname, middlename, lastname, countydisplaynameoflastcontact, dateoflastcontact, image, gender, computedmissingmaxage, currentagefrom}) => 
-                   <div key={image.id}>
-                       <h1>{`${firstname} ${middlename} ${lastname}`}</h1>
-                       <p>{gender}</p>
-                       <h3>{countydisplaynameoflastcontact}</h3>
-                       <h3>{dateoflastcontact}</h3>
-                       <h4>{computedmissingmaxage} || {currentagefrom}</h4>
+               {lost.map( lose => 
+                   <div key={lose.id}>
+                       <img src={lose.data.lose.image} />
+                       <h1>{`${lose.data.lose.name}`}</h1>
+                       <p>{lose.data.lose.city}</p>
+                       <h3>{lose.data.lose.date}</h3>
+                       <h3>{lose.data.lose.gender}</h3>
+                       <h4>Plase if you see this person call:</h4>
+                       <h5><b>{lose.data.name} </b><em>{lose.data.phone}</em></h5>
                    </div>
                )}
             </div>

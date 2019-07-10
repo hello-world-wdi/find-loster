@@ -7,43 +7,49 @@ class Lost extends Component {
 
     state = {
         losses: [],
-        city: this.props.city,
+        city: 'jeddh',
     }
-
-    componentDidMount = () => {
-        let copyLosses = this.state.losses.slice();
-        api.losses()
-        .then(response => {
-            copyLosses = response.data.records.map(({fields}) => fields)
-            this.setState({
-                losses: copyLosses.filter(lose => lose.countydisplaynameoflastcontact === this.state.city)
-            });
-        })
-        .catch(error => console.log(error))
-    }
-
     componentWillMount = () => {
-        const locationRef = api.firebase.database().ref('location');
-        locationRef.on('value', (snapshot) => {
-            const lastLocationObject = Object.keys(snapshot.val())[Object.keys(snapshot.val()).length - 1];
-            let cityCopy = snapshot.val()[lastLocationObject].city;
-            this.setState({
-                city: cityCopy
-            })
-          });
-        
-        
+        const locationRef = api.firebase.database().ref('location/city');
+        !this.state.city && (
+            locationRef.once('value').then(
+                snapshot => this.setState({
+                    city: snapshot.val()
+                }),
+                error => console.log(error)
+            )
+        )
+    }
+    componentDidMount = () => {
+        const locationRef = api.firebase.database().ref('losses');
+        const copyLosses = this.state.losses.slice();
+        locationRef.once('value').then(
+            snapshot => {
+                snapshot.forEach(snapshotChilde => {
+                    if(snapshotChilde.val().lose.city.toLowerCase() === this.state.city.toLowerCase())
+                        copyLosses.push({
+                            id: snapshotChilde.key,
+                            data: snapshotChilde.val()
+                        })
+                });
+                this.setState({
+                    losses: copyLosses
+                })
+            },
+            error => console.log(error)
+        )
     }
     
     render(){
+        console.log(this.state.city)
         return (
             <div className="lost">
                 {this.state.losses.map(lost => 
-                <div key={lost.image.id}>
-                    <h1>{lost.firstname}</h1>
-                    <h3>{lost.countydisplaynameoflastcontact}</h3>
-                    <p>{lost.dateoflastcontact}</p>
-                    <Link to={`lost/details/${lost.image.id}`}>Show more</Link>
+                <div key={lost.id}>
+                    <h1>{lost.data.lose.name}</h1>
+                    <h3>{lost.data.lose.city}</h3>
+                    <p>{lost.data.lose.date}</p>
+                    <Link to={`lost/details/${lost.id}`}>Show more</Link>
                     <hr />
                 </div>
                 )}
@@ -53,8 +59,6 @@ class Lost extends Component {
     }
 }
 
-Lost.defaultProps = {
-    city: 'San Diego'
-}
+
 
 export default Lost;
