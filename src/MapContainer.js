@@ -23,13 +23,16 @@ class MapContainer extends Component{
         
         api.getCity()
         .then(response => {
+          const database = api.firebase.database();
           let cityIndex = response.data.plus_code.compound_code.indexOf(',') + 2;
           let location = response.data.plus_code.compound_code.slice(cityIndex);
-          let spaceIndex = location.indexOf(' ');
-          location = location.slice(0, spaceIndex);
-          console.log(location);
-          const locationRef = api.firebase.database().ref('location');
-          locationRef.push({city: location});
+          location = location.slice(0, location.indexOf(' '));
+          const locationRef = database.ref('location').update({
+            city: location
+          }).then(
+            () => console.log('City updated'),
+            error => console.log(`City not updated because ${error}`)
+          )
         })
         
         
