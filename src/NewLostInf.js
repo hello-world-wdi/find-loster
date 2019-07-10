@@ -19,6 +19,7 @@ class NewLostInf extends React.Component {
   };
   handelChange = event => {
     const value = event.target.value;
+    console.log(value)
     const name = event.target.name;
     const copyFormData = Object.assign(this.state.formData);
     if(name.includes('u'))
@@ -57,8 +58,8 @@ class NewLostInf extends React.Component {
         <label>Date </label>
         <input name='date' className="BoxForm"  type='date' value={this.state.formData.lose.date} onChange={this.handelChange}/><br/><br/>
         <label className="genderSpace">Gender: </label>
-        <input name="gender" value='male' type="radio" value={this.state.formData.lose.gender} onChange={this.handelChange}/>Male
-        <input name="gender" value='female' type="radio" value={this.state.formData.lose.gender} onChange={this.handelChange}/>Female
+        <input name="gender" value='male' type="radio"  onChange={this.handelChange}/>Male
+        <input name="gender" value='female' type="radio"  onChange={this.handelChange}/>Female
 
         </div>
       </form>
