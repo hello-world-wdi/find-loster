@@ -13,6 +13,7 @@ class NewLostInf extends React.Component {
           city: '',
           age: '',
           date: '',
+          image: ''
       }
     },
   };
@@ -31,7 +32,7 @@ class NewLostInf extends React.Component {
 
   handelSubmit = event => {
     event.preventDefault();
-    api.firebase.database().ref().push(this.state.formData).then(
+    api.firebase.database().ref('losses').push(this.state.formData).then(
       () => console.log('Data Saved'),
       error => console.log(`Data not Saved: ${error}`)
     )
@@ -46,11 +47,13 @@ class NewLostInf extends React.Component {
         <div id="first">
        <h3>Lose Information</h3>
         <label>Name </label>
-        <input name='name' type='text' className="BoxForm"  value={this.state.formData.lose.name} onChange={this.handelChange}/><br/><br/>
+        <input name='name' type='text' className="BoxForm" placeholder="Ali Alali"  value={this.state.formData.lose.name} onChange={this.handelChange}/><br/><br/>
         <label>City </label>
-        <input name='city'type='text' placeholder=" Name" className="BoxForm"  value={this.state.formData.lose.city} onChange={this.handelChange}/><br/><br/>
+        <input name='city'type='text' placeholder="Jeddah" className="BoxForm"  value={this.state.formData.lose.city} onChange={this.handelChange}/><br/><br/>
+        <label>Image </label>
+        <input name='image'type='text' placeholder="images/lose.jpg" className="BoxForm"  value={this.state.formData.lose.image} onChange={this.handelChange}/><br/><br/>
         <label>Age </label>
-        <input name='age' className="BoxForm"  type='number' value={this.state.formData.lose.age} onChange={this.handelChange}/><br/><br/>
+        <input name='age' className="BoxForm" placeholder="47" type='number' value={this.state.formData.lose.age} onChange={this.handelChange}/><br/><br/>
         <label>Date </label>
         <input name='date' className="BoxForm"  type='date' value={this.state.formData.lose.date} onChange={this.handelChange}/><br/><br/>
         <label className="genderSpace">Gender: </label>
@@ -68,9 +71,9 @@ class NewLostInf extends React.Component {
           <div id="first">
           <h3>Your Information</h3>
           <label>Name</label>
-          <input   className="BoxForm" name='uname' type='text' value={this.state.formData.name} onChange={this.handelChange}/><br/><br/>
+          <input   className="BoxForm" placeholder="Ahmed Alahmed" name='uname' type='text' value={this.state.formData.name} onChange={this.handelChange}/><br/><br/>
           <label>Phone</label>
-          <input className="BoxForm" name='uphone'type='text' value={this.state.formData.phone} onChange={this.handelChange}/><br/><br/>
+          <input className="BoxForm" placeholder="0512365498" name='uphone'type='text' value={this.state.formData.phone} onChange={this.handelChange}/><br/><br/>
 
           <div className="submit">
           <input type='Submit' value='Save' />
