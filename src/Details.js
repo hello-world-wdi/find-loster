@@ -52,7 +52,7 @@ class Details extends Component {
                        <p>{lose.data.lose.city}</p>
                        <h3>{lose.data.lose.date}</h3>
                        <h3>{lose.data.lose.gender}</h3>
-                       <h4>Plase if you see this person call:</h4>
+                       <h4>Please if you see this person call this number:</h4>
                        <h5><b>{lose.data.name} </b><em>{lose.data.phone}</em></h5>
                    </div>
                )}
