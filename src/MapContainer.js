@@ -54,13 +54,11 @@ class MapContainer extends Component{
     
     return (
       <div className="App">
-        <header className="App-header">
+        {/* <header className="App-header">
             <Map google={google} initialCenter={userLocation} zoom={14} >
-                {/* { console.log(this.state.userLocation.lat) }
-                { console.log(this.state.userLocation.lng) } */}
                 <Marker onClick={this.onMarkerClick}  name={'Current location'} />
             </Map>
-        </header>
+        </header> */}
       </div>
     );
   }

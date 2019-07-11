@@ -16,7 +16,7 @@ class App extends React.Component {
         <Nav />
         <Route exact path='/' component={Home} />
         <Route path='/About/' component={About} />
-        {/* <Route exact path='/' component={MapContainer} /> */}
+        <Route exact path='/' component={MapContainer} />
         <Route exact path='/lost/' component={Lost} />
         <Route exact path='/lost/details/:id' component={Details} />
         <Route exact path='/newLostInf' component={NewLostInf} />
