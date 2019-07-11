@@ -6,13 +6,17 @@ import Details from './Details';
 import MapContainer from './MapContainer'
 import Nav from './Nav';
 import NewLostInf from './NewLostInf'
+import Home  from './Home';
+import About from './About';
 class App extends React.Component {
   render(){
     
     return (
       <div className="App">
         <Nav />
-        <Route exact path='/' component={MapContainer} />
+        <Route exact path='/' component={Home} />
+        <Route path='/About/' component={About} />
+        {/* <Route exact path='/' component={MapContainer} /> */}
         <Route exact path='/lost/' component={Lost} />
         <Route exact path='/lost/details/:id' component={Details} />
         <Route exact path='/newLostInf' component={NewLostInf} />

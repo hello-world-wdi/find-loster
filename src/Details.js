@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import './Details.css';
 import api from './api';
+import Footer from './Footer'
 class Details extends Component {
 
     state = {
         losses: [],
-        city: 'jeddh'
+        city: this.props.city
     }
     componentWillMount = () => {
         const locationRef = api.firebase.database().ref('location/city');
@@ -42,7 +43,8 @@ class Details extends Component {
         const lost = this.state.losses.filter(lost => lost.id === this.props.match.params.id)
         console.log(lost[0])
         return (
-            <div className='Details'>
+            <div>
+                <section className='Details'>
                {lost.map( lose => 
                    <div key={lose.id}>
                        <img src={lose.data.lose.image} />
@@ -54,6 +56,8 @@ class Details extends Component {
                        <h5><b>{lose.data.name} </b><em>{lose.data.phone}</em></h5>
                    </div>
                )}
+            </section>
+            <Footer />
             </div>
         )
     }

@@ -1,0 +1,55 @@
+.about{
+    background-color: white;
+    height: 100%;    
+    /* margin-top: 20px; */
+    padding: 20px 0px 50px 0px;
+}
+
+.about .aboutSection{
+    padding: 60px 0px 30px 0px;
+    text-transform: uppercase;
+    text-align: center;
+}
+.about .services{
+    padding-bottom: 0px;
+}
+
+.about .single-about-content {
+    text-align: center;
+    margin-top: 35px;
+    margin-bottom: 100px;
+}
+.about .icon {
+    width: 130px;
+    height: 130px;
+    margin: 0 auto;
+    line-height: 130px;
+    border-width: 2px;
+    font-size: 36px;
+    color:#292929;
+}
+
+.about h5  {
+   margin-top: 20px;
+}
+.about h5 a {
+    color:#292929;
+    margin: 35px 0 20px 0;
+}
+.about .single-about-content a.more {
+    width: 130px;
+    line-height: 45px;
+    color:#292929;
+    border-width: 1px;
+    margin-top:22px;
+  }
+.about .single-about-content a.more:hover,
+.about .single-about-content:hover .icon {
+    color:#fff;
+}
+.single-about-content:hover h5 a{
+    color:#FFA500;
+}
+.single-about-content:hover .icon{
+    background: #FFA500;
+}

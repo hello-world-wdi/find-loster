@@ -1,0 +1,37 @@
+#mainNav {
+    min-height: 56px;
+    background-color: #272a30;
+  }
+#mainNav a .nav-link {
+  color: white;
+}
+  #mainNav .navbar-toggler {
+    font-size: 80%;
+    padding: 0.75rem;
+    color: #64a19d;
+    border: 1px solid #64a19d;
+  }
+  
+  #mainNav .navbar-toggler:focus {
+    outline: none;
+  }
+
+  
+  #mainNav .navbar-brand {
+    color: white;
+    font-weight: 700;
+    padding: .9rem 0;
+    font-size: 30px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  #mainNav .navbar-nav .nav-item:hover {
+    color: fade(white, 80%);
+    outline: none;
+    background-color: transparent;
+  }
+  
+  #mainNav .navbar-nav .nav-item:active, #mainNav .navbar-nav .nav-item:focus {
+    outline: none;
+    background-color: transparent;
+  }

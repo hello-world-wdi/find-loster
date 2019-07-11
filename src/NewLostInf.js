@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import './NewLostInf.css';
 import { Redirect } from 'react-router-dom'
-import api from './api'
+import api from './api';
+import Footer from './Footer'
+import './Home.css'
 class NewLostInf extends React.Component {
   state = {
     formData: {
@@ -41,28 +43,28 @@ class NewLostInf extends React.Component {
   }
   render() {
     return (
-      <main className='NewLostInf'>
-                <aside className="section1">
+     <div>
+        <main className='NewLostInf'>
+            <aside className="section1">
       
-      <form onSubmit={this.handelSubmit}>
-        <div id="first">
-       <h3>Lose Information</h3>
-        <label>Name </label>
-        <input name='name' type='text' className="BoxForm" placeholder="Ali Alali"  value={this.state.formData.lose.name} onChange={this.handelChange}/><br/><br/>
-        <label>City </label>
-        <input name='city'type='text' placeholder="Jeddah" className="BoxForm"  value={this.state.formData.lose.city} onChange={this.handelChange}/><br/><br/>
-        <label>Image </label>
-        <input name='image'type='text' placeholder="images/lose.jpg" className="BoxForm"  value={this.state.formData.lose.image} onChange={this.handelChange}/><br/><br/>
-        <label>Age </label>
-        <input name='age' className="BoxForm" placeholder="47" type='number' value={this.state.formData.lose.age} onChange={this.handelChange}/><br/><br/>
-        <label>Date </label>
-        <input name='date' className="BoxForm"  type='date' value={this.state.formData.lose.date} onChange={this.handelChange}/><br/><br/>
-        <label className="genderSpace">Gender: </label>
-        <input name="gender" value='male' type="radio"  onChange={this.handelChange}/>Male
-        <input name="gender" value='female' type="radio"  onChange={this.handelChange}/>Female
-
-        </div>
-      </form>
+            <form onSubmit={this.handelSubmit}>
+              <div id="first">
+                  <h3>Lose Information</h3>
+                    <label>Name </label>
+                    <input name='name' type='text' className="BoxForm" placeholder="Ali Alali"  value={this.state.formData.lose.name} onChange={this.handelChange}/><br/><br/>
+                    <label>City </label>
+                    <input name='city'type='text' placeholder="Jeddah" className="BoxForm"  value={this.state.formData.lose.city} onChange={this.handelChange}/><br/><br/>
+                    <label>Image </label>
+                    <input name='image'type='text' placeholder="images/lose.jpg" className="BoxForm"  value={this.state.formData.lose.image} onChange={this.handelChange}/><br/><br/>
+                    <label>Age </label>
+                    <input name='age' className="BoxForm" placeholder="47" type='number' value={this.state.formData.lose.age} onChange={this.handelChange}/><br/><br/>
+                    <label>Date </label>
+                    <input name='date' className="BoxForm"  type='date' value={this.state.formData.lose.date} onChange={this.handelChange}/><br/><br/>
+                    <label className="genderSpace">Gender: </label>
+                    <input name="gender" value='male' type="radio"  onChange={this.handelChange}/>Male
+                    <input name="gender" value='female' type="radio"  onChange={this.handelChange}/>Female
+              </div>
+            </form>
       </aside>
 
       <hr class="hr"/>
@@ -83,9 +85,13 @@ class NewLostInf extends React.Component {
           </div>
         </form>
         </aside>
-        
 
+       
       </main>
+       <div className="footer">
+       <Footer/>
+    </div>
+     </div>
     );
   }
 }
