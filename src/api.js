@@ -22,5 +22,5 @@ class api extends Component{
 
 // export default api;
 export default GoogleApiWrapper({
-  apiKey: ("AIzaSyDIAICVZcHIUeFjNMsHhoNoYcKHuYWdCuY")
+  apiKey: ("")
 })(api)
